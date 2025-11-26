@@ -34,3 +34,15 @@ Feature:
         | Zip Code       | 12345          |
         | Country        | USA            |
       And User click on to payment button
+      Then User should be redirected to the Payment page
+
+      When User fill in payment method form
+        | FullName       | John Doe        |
+        | Card Number    | 123456789123456 |
+        | Expiration Date| 05/26           |
+        | Security Code  | 2500            |
+      And User click on Review Order button
+      Then User should be redirected to the Review Order page
+
+      When User click on Place Order button
+      Then User should be redirected to the Checkout Complete page

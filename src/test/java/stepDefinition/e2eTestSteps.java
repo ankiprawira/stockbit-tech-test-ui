@@ -17,6 +17,8 @@ public class e2eTestSteps {
     MyCartPage myCartPage;
     LoginPage loginPage;
     CheckoutPage checkoutPage;
+    PaymentPage paymentPage;
+    ReviewOrderPage reviewOrderPage;
 
     @When("User in landing page")
     public void userInLandingPage() {
@@ -111,4 +113,46 @@ public class e2eTestSteps {
     public void userClickToPayment() {
         checkoutPage.clickToPayment();
     }
+
+    @Then("User should be redirected to the Payment page")
+    public void userShouldBeRedirectedToPaymentPage() {
+        paymentPage = new PaymentPage(driver);
+        paymentPage.assertPaymentPage();
+    }
+
+    @When("User fill in payment method form")
+    public void userFillInPaymentMethodForm(DataTable table) {
+        paymentPage = new PaymentPage(driver);
+        Map<String, String> data = table.asMap(String.class, String.class);
+        paymentPage.insertCreditCard(
+                data.get("FullName"),
+                data.get("Card Number"),
+                data.get("Expiration Date"),
+                data.get("Security Code")
+        );
+    }
+
+    @And("User click on Review Order button")
+    public void userClickOnReviewOrderButton() {
+        paymentPage = new PaymentPage(driver);
+        paymentPage.clickReviewOrder();
+    }
+
+    @Then("User should be redirected to the Review Order page")
+    public void assertReviewPage() {
+        reviewOrderPage = new ReviewOrderPage(driver);
+        reviewOrderPage.assertReviewPage();
+    }
+
+    @When("User click on Place Order button")
+    public void userClickOnPlaceOrderButton() {
+        reviewOrderPage.clickPlaceOrder();
+    }
+
+    @Then ("User should be redirected to the Checkout Complete page")
+    public void assertComplete(){
+        reviewOrderPage.assertCompletePage();
+    }
+
+
 }

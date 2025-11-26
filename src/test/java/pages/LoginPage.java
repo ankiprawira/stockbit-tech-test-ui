@@ -46,7 +46,7 @@ public class LoginPage {
         Assert.assertTrue("Field is not displayed", fieldPassword.isDisplayed());
     }
 
-    // ===================== ASSERTIONS =====================
+    // ===================== FUNCTIONS =====================
 
     public void insertPasswordAndUsername(String userName, String password) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
