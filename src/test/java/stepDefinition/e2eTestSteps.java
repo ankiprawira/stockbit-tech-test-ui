@@ -2,11 +2,13 @@ package stepDefinition;
 
 import base.DriverManager;
 import io.appium.java_client.android.AndroidDriver;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
-import pages.LandingPage;
-import pages.LoginPage;
-import pages.MyCartPage;
-import pages.ProductPage;
+import pages.*;
+
+import java.util.Map;
+
+import static base.DriverManager.driver;
 
 public class e2eTestSteps {
 
@@ -14,10 +16,11 @@ public class e2eTestSteps {
     ProductPage productPage;
     MyCartPage myCartPage;
     LoginPage loginPage;
+    CheckoutPage checkoutPage;
 
     @When("User in landing page")
     public void userInLandingPage() {
-        landingPage = new LandingPage(DriverManager.driver);
+        landingPage = new LandingPage(driver);
         landingPage.assertLandingPageDisplayed();
     }
 
@@ -28,7 +31,7 @@ public class e2eTestSteps {
 
     @Then("User should be able to open Product Page")
     public void productPageShouldBeOpened(){
-        productPage = new ProductPage(DriverManager.driver);
+        productPage = new ProductPage(driver);
         productPage.assertProductPageDisplayed();
     }
 
@@ -59,7 +62,7 @@ public class e2eTestSteps {
 
     @Then("User should see {string} with quantity {int} in the cart")
     public void userSeeCartPage(String productName, Integer expectedQty){
-        myCartPage = new MyCartPage(DriverManager.driver);
+        myCartPage = new MyCartPage(driver);
         myCartPage.assertMyCartPage(productName, expectedQty);
     }
 
@@ -70,7 +73,7 @@ public class e2eTestSteps {
 
     @And ("User should be redirected to the Login page")
     public void assertLoginPage(){
-        loginPage = new LoginPage(DriverManager.driver);
+        loginPage = new LoginPage(driver);
         loginPage.assertLoginPage();
     }
 
@@ -82,5 +85,30 @@ public class e2eTestSteps {
     @And ("User click login button")
     public void clickLogin(){
         loginPage.clickLogin();
+    }
+
+    @Then ("User should be redirected to Checkout page")
+    public void assertCheckoutPage(){
+        checkoutPage = new CheckoutPage(driver);
+        checkoutPage.assertCheckoutPage();
+    }
+
+    @When("User fill in shipping form with:")
+    public void userFillShippingForm(DataTable dataTable) {
+        Map<String, String> data = dataTable.asMap(String.class, String.class);
+        checkoutPage.insertShipping(
+                data.get("FullName"),
+                data.get("Address Line 1"),
+                data.get("Address Line 2"),
+                data.get("City"),
+                data.get("State/Region"),
+                data.get("Zip Code"),
+                data.get("Country")
+        );
+    }
+
+    @And("User click on to payment button")
+    public void userClickToPayment() {
+        checkoutPage.clickToPayment();
     }
 }

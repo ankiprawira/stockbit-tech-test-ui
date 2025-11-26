@@ -23,3 +23,14 @@ Feature:
       And User should be redirected to the Login page
       And User fill the login form with username "bod@example.com" and password "10203040"
       And User click login button
+      Then User should be redirected to Checkout page
+
+      When User fill in shipping form with:
+        | FullName       | John Doe       |
+        | Address Line 1 | Liberty Street |
+        | Address Line 2 | Freedom Alley  |
+        | City           | JNY City       |
+        | State/Region   | New York       |
+        | Zip Code       | 12345          |
+        | Country        | USA            |
+      And User click on to payment button
