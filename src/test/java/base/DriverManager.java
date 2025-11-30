@@ -27,9 +27,12 @@ public class DriverManager {
             options.setDeviceName("sdk_gphone64_x86_64");
             options.setUdid("emulator-5554");
             options.setPlatformName("Android");
-            options.setPlatformVersion("16");
             options.setAutomationName("UiAutomator2");
             options.setApp(appPath.toString());
+            options.setCapability("autoGrantPermissions", true);
+            options.setNoReset(false);
+            options.setFullReset(true);
+
 
             driver = new AndroidDriver(
                     new URL("http://127.0.0.1:4723/"),
