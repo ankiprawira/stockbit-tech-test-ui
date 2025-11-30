@@ -41,23 +41,17 @@ public class ReviewOrderPage {
     public void assertReviewPage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        WebElement reviewTitle = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.TXT_REVIEW_TITLE)
-        );
+        WebElement reviewTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.TXT_REVIEW_TITLE));
         Assert.assertTrue("Review Order title is not displayed", reviewTitle.isDisplayed());
 
-        WebElement paymentMethod = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.TXT_METHOD_TITLE)
-        );
+        WebElement paymentMethod = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.TXT_METHOD_TITLE));
         Assert.assertTrue("Payment method section not displayed", paymentMethod.isDisplayed());
     }
 
     public void assertCompletePage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        WebElement completeTitle = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.TXT_COMPLETE)
-        );
+        WebElement completeTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.TXT_COMPLETE));
         Assert.assertTrue("Review Order title is not displayed", completeTitle.isDisplayed());
     }
 
@@ -65,6 +59,7 @@ public class ReviewOrderPage {
 
     public void clickPlaceOrder() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
         wait.until(ExpectedConditions.elementToBeClickable(Locators.BTN_PLACE_ORDER)).click();
         System.out.println("Click button Place Order");
     }

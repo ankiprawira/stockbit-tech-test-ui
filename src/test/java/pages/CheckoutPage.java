@@ -78,45 +78,31 @@ public class CheckoutPage {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        WebElement fldFullName = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_FULLNAME)
-        );
+        WebElement fldFullName = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_FULLNAME));
         fldFullName.clear();
         fldFullName.sendKeys(fullName);
 
-        WebElement fldAddress1 = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ADDRESS_1)
-        );
+        WebElement fldAddress1 = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ADDRESS_1));
         fldAddress1.clear();
         fldAddress1.sendKeys(address1);
 
-        WebElement fldAddress2 = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ADDRESS_2)
-        );
+        WebElement fldAddress2 = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ADDRESS_2));
         fldAddress2.clear();
         fldAddress2.sendKeys(address2);
 
-        WebElement fldCity = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CITY)
-        );
+        WebElement fldCity = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CITY));
         fldCity.clear();
         fldCity.sendKeys(city);
 
-        WebElement fldState = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_STATE)
-        );
+        WebElement fldState = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_STATE));
         fldState.clear();
         fldState.sendKeys(state);
 
-        WebElement fldZip = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ZIP)
-        );
+        WebElement fldZip = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_ZIP));
         fldZip.clear();
         fldZip.sendKeys(zip);
 
-        WebElement fldCountry = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_COUNTRY)
-        );
+        WebElement fldCountry = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_COUNTRY));
         fldCountry.clear();
         fldCountry.sendKeys(country);
     }

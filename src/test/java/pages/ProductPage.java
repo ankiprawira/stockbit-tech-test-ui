@@ -96,9 +96,9 @@ public class ProductPage {
 
     public void assertCartBadgeCount(int expectedCount) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        String countText = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.TXT_CART_BADGE)
-        ).getText().trim();
+        String countText = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.TXT_CART_BADGE))
+                .getText()
+                .trim();
         int actualCount = Integer.parseInt(countText);
 
         Assert.assertEquals("Cart badge count mismatch", expectedCount, actualCount);

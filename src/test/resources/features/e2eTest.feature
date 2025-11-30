@@ -6,7 +6,7 @@ Feature:
   Background:
     Given the app is launched
 
-    Scenario: User buy 2 Sauce Lab Bolt T-Shirt
+    Scenario: User buy 2 Sauce Lab Back Packs
       When User in landing page
       And  User click product "Sauce Lab Back Packs"
       Then User should be able to open Product Page

@@ -45,14 +45,10 @@ public class PaymentPage {
     public void assertPaymentPage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        WebElement paymentTitle = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.TXT_PAYMENT_TITLE)
-        );
+        WebElement paymentTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.TXT_PAYMENT_TITLE));
         Assert.assertTrue("Payment title is not displayed", paymentTitle.isDisplayed());
 
-        WebElement fieldName = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_NAME)
-        );
+        WebElement fieldName = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_NAME));
         Assert.assertTrue("Name field is not displayed", fieldName.isDisplayed());
     }
 
@@ -61,27 +57,20 @@ public class PaymentPage {
     public void insertCreditCard(String name, String cardNumber, String expiry, String cvv) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-        WebElement fldName = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_NAME)
-        );
+        WebElement fldName = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_NAME));
         fldName.clear();
         fldName.sendKeys(name);
 
-        WebElement fldCard = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CARD)
+        WebElement fldCard = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CARD)
         );
         fldCard.clear();
         fldCard.sendKeys(cardNumber);
 
-        WebElement fldExp = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_EXP)
-        );
+        WebElement fldExp = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_EXP));
         fldExp.clear();
         fldExp.sendKeys(expiry);
 
-        WebElement fldCvv = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CVV)
-        );
+        WebElement fldCvv = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FLD_CVV));
         fldCvv.clear();
         fldCvv.sendKeys(cvv);
     }

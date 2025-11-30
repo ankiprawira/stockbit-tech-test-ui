@@ -2,6 +2,7 @@ package pages;
 
 import io.appium.java_client.*;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
@@ -36,10 +37,15 @@ public class LandingPage {
 
     public void assertLandingPageDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement navbar = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.NAVBAR));
+        Assert.assertTrue("Navbar is not displayed", navbar.isDisplayed());
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.NAVBAR));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.CARD_SECTION));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FIRST_PRODUCT_CARD));
+        WebElement cardSection = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.CARD_SECTION));
+        Assert.assertTrue("Card Section is not displayed", cardSection.isDisplayed());
+
+        WebElement productCard = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.FIRST_PRODUCT_CARD));
+        Assert.assertTrue("Product Card is not displayed", productCard.isDisplayed());
+
         System.out.println("Landing Page displayed correctly");
     }
 
@@ -47,11 +53,8 @@ public class LandingPage {
 
     public void clickProductByName(String productName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement productTitle = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(Locators.productCardByName(productName))
-        );
-        assertTrue("Product with name '" + productName + "' should be displayed",
-                productTitle.isDisplayed());
+        WebElement productTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(Locators.productCardByName(productName)));
+        assertTrue("Product with name '" + productName + "' should be displayed", productTitle.isDisplayed());
         productTitle.click();
         System.out.println("Click Product " + productName);
     }
